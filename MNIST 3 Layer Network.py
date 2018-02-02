@@ -18,7 +18,7 @@ def dsigmoid(x):
 
 
 def SGDNetwork(train_in, train_out,test_in,test_out, learnRate, hiddenUnits, features, epochs):
-    print("Stochastic Gradient Descent with parameters:")
+    print("\nStochastic Gradient Descent with parameters:")
     print("Learn Rate: "+str(learnRate))
     print("Hidden Units: " + str(hiddenUnits))
     print("Features: " + str(features))
@@ -47,9 +47,10 @@ def SGDNetwork(train_in, train_out,test_in,test_out, learnRate, hiddenUnits, fea
                 results[m]=1
             else:
                 results[m]=0
-        print("Epoch:" + str(t+1))
-        print("Correct Predictions on train: " + str(np.sum(results==train_out)))
-        print("Accuracy on train:"+ str(np.sum(results==train_out)/len(train_out)))
+        if t in [9,19,29,39,49,59,69,79,89,99]:
+            print("\nEpoch:" + str(t+1))
+            print("Correct Predictions on train: " + str(np.sum(results==train_out)))
+            print("Accuracy on train:"+ str(np.sum(results==train_out)/len(train_out)))
     b = np.zeros([hiddenUnits])
     output=np.zeros(len(test_out))
     for n in range(0,len(test_out)):
@@ -62,14 +63,14 @@ def SGDNetwork(train_in, train_out,test_in,test_out, learnRate, hiddenUnits, fea
             output[n] = 1
         else:
             output[n] = 0
-    print("Correct Predictions on test: "+str(np.sum(output == test_out)))
+    print("\nCorrect Predictions on test: "+str(np.sum(output == test_out)))
     print("Accuracy on test: "+str(np.sum(output == test_out) / len(test_out)))
 
 
 
 
 def SBDNetwork(train_in, train_out,test_in,test_out, learnRate, hiddenUnits, features, epochs):
-    print("Batch Gradient Descent with parameters:")
+    print("\nBatch Gradient Descent with parameters:")
     print("Learn Rate: "+str(learnRate))
     print("Hidden Units: " + str(hiddenUnits))
     print("Features: " + str(features))
@@ -102,9 +103,10 @@ def SBDNetwork(train_in, train_out,test_in,test_out, learnRate, hiddenUnits, fea
                 results[m]=0
         W2 = W2 + learnRate * W2aux / len(train_out)
         W1 = W1 + learnRate * W1aux / len(train_out)
-        print("Epoch:" + str(t+1))
-        print("Correct Predictions on train: " + str(np.sum(results==train_out)))
-        print("Accuracy on train:"+ str(np.sum(results==train_out)/len(train_out)))
+        if t in [9,19,29,39,49,59,69,79,89,99]:
+            print("\nEpoch:" + str(t+1))
+            print("Correct Predictions on train: " + str(np.sum(results==train_out)))
+            print("Accuracy on train:"+ str(np.sum(results==train_out)/len(train_out)))
     b = np.zeros([hiddenUnits])
     output=np.zeros(len(test_out))
     for n in range(0,len(test_out)):
@@ -117,14 +119,14 @@ def SBDNetwork(train_in, train_out,test_in,test_out, learnRate, hiddenUnits, fea
             output[n] = 1
         else:
             output[n] = 0
-    print("Correct Predictions on test: "+str(np.sum(output == test_out)))
+    print("\nCorrect Predictions on test: "+str(np.sum(output == test_out)))
     print("Accuracy on test: "+str(np.sum(output == test_out) / len(test_out)))
 
 
 features = 784
 hiddenUnits = int(np.round(1.2 * features))
-learnRate = 0.7
-epochs = 3
+learnRate = 0.3
+epochs = 100
 
 test_in = np.loadtxt("mnist_small_test_in.txt", delimiter=',')
 test_outpre = np.loadtxt("mnist_small_test_out.txt", delimiter=',')
